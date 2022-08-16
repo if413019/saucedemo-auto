@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.6 on darwin)" generated="20220816 13:09:55.492" rpa="false" schemaversion="3">
+<suite id="s1" name="Test-Inventory" source="/Users/user/PycharmProjects/saucedemo-auto/tests/test-inventory.robot">
+<test id="s1-t1" name="Sort products by prices ASC" line="14">
+<kw name="Open chrome browser and go to https://www.saucedemo.com/" library="common" type="SETUP" sourcename="Open ${browser} browser and go to ${site_url}">
+<doc>Open browser and go to specific url on maximized window</doc>
+<kw name="Set Selenium Timeout" library="Selenium2Library">
+<arg>10 seconds</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" starttime="20220816 13:09:55.780" endtime="20220816 13:09:55.780"/>
+</kw>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>${site_url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220816 13:09:55.780" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20220816 13:09:55.780" endtime="20220816 13:09:59.346"/>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220816 13:09:59.346" endtime="20220816 13:09:59.474"/>
+</kw>
+<status status="PASS" starttime="20220816 13:09:55.779" endtime="20220816 13:09:59.475"/>
+</kw>
+<kw name="Wait until login page successfuly loaded" library="page-login">
+<doc>Verify required elements are displayed in login page</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${INPUT_USERNAME}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:09:59.477" endtime="20220816 13:09:59.504"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${INPUT_PASSWORD}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:09:59.504" endtime="20220816 13:09:59.523"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:09:59.524" endtime="20220816 13:09:59.540"/>
+</kw>
+<status status="PASS" starttime="20220816 13:09:59.476" endtime="20220816 13:09:59.541"/>
+</kw>
+<kw name="Fill login form and submit" library="page-login">
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<arg>valid login</arg>
+<doc>Input values into login form and click on button Login</doc>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${INPUT_USERNAME}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220816 13:09:59.541" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20220816 13:09:59.541" endtime="20220816 13:09:59.698"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${INPUT_PASSWORD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220816 13:09:59.698" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20220816 13:09:59.698" endtime="20220816 13:09:59.779"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220816 13:09:59.779" level="INFO">Clicking element 'id:login-button'.</msg>
+<status status="PASS" starttime="20220816 13:09:59.779" endtime="20220816 13:09:59.852"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${scenario}&quot; == &quot;valid login&quot;">
+<kw name="Wait until inventory page successfully loaded" library="page-inventory">
+<doc>Verify required elements are displayed in inventory page</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${MENU_CART}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:09:59.853" endtime="20220816 13:09:59.901"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${OPTION_SORT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:09:59.902" endtime="20220816 13:09:59.921"/>
+</kw>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${TITLE}</arg>
+<arg>PRODUCTS</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220816 13:09:59.922" level="INFO">Verifying element 'class:title' contains exact text 'PRODUCTS'.</msg>
+<status status="PASS" starttime="20220816 13:09:59.921" endtime="20220816 13:09:59.970"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${PRODUCT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:09:59.970" endtime="20220816 13:10:00.073"/>
+</kw>
+<kw name="Get Element Count" library="Selenium2Library">
+<var>${count}</var>
+<arg>${PRODUCT}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20220816 13:10:00.083" level="INFO">${count} = 6</msg>
+<status status="PASS" starttime="20220816 13:10:00.074" endtime="20220816 13:10:00.083"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${count} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.083" endtime="20220816 13:10:00.084"/>
+</kw>
+<status status="PASS" starttime="20220816 13:09:59.852" endtime="20220816 13:10:00.084"/>
+</kw>
+<status status="PASS" starttime="20220816 13:09:59.852" endtime="20220816 13:10:00.084"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${scenario}&quot; == &quot;invalid login&quot;">
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${ERROR_MESSAGE}</arg>
+<arg>Epic sadface: Username and password do not match any user in this service</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:00.084" endtime="20220816 13:10:00.084"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:00.084" endtime="20220816 13:10:00.084"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${scenario}&quot; == &quot;locked out&quot;">
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${ERROR_MESSAGE}</arg>
+<arg>Epic sadface: Sorry, this user has been locked out.</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:00.084" endtime="20220816 13:10:00.084"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:00.084" endtime="20220816 13:10:00.084"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>unknown login scenario: ${scenario}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:00.085" endtime="20220816 13:10:00.085"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:00.085" endtime="20220816 13:10:00.085"/>
+</branch>
+<status status="PASS" starttime="20220816 13:09:59.852" endtime="20220816 13:10:00.085"/>
+</if>
+<status status="PASS" starttime="20220816 13:09:59.541" endtime="20220816 13:10:00.085"/>
+</kw>
+<kw name="Sort products by lohi" library="page-inventory" sourcename="Sort products by ${sort_strategy}">
+<doc>Select and apply sort-strategy in inventory page</doc>
+<kw name="Select From List By Value" library="Selenium2Library">
+<arg>${OPTION_SORT}</arg>
+<arg>${sort_strategy}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20220816 13:10:00.087" level="INFO">Selecting options from selection list 'class:product_sort_container' by value lohi.</msg>
+<status status="PASS" starttime="20220816 13:10:00.086" endtime="20220816 13:10:00.142"/>
+</kw>
+<kw name="Wait until inventory page successfully loaded" library="page-inventory">
+<doc>Verify required elements are displayed in inventory page</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${MENU_CART}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:00.143" endtime="20220816 13:10:00.154"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${OPTION_SORT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:00.154" endtime="20220816 13:10:00.167"/>
+</kw>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${TITLE}</arg>
+<arg>PRODUCTS</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220816 13:10:00.167" level="INFO">Verifying element 'class:title' contains exact text 'PRODUCTS'.</msg>
+<status status="PASS" starttime="20220816 13:10:00.167" endtime="20220816 13:10:00.182"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${PRODUCT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:00.182" endtime="20220816 13:10:00.194"/>
+</kw>
+<kw name="Get Element Count" library="Selenium2Library">
+<var>${count}</var>
+<arg>${PRODUCT}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20220816 13:10:00.199" level="INFO">${count} = 6</msg>
+<status status="PASS" starttime="20220816 13:10:00.194" endtime="20220816 13:10:00.199"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${count} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.199" endtime="20220816 13:10:00.199"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.142" endtime="20220816 13:10:00.199"/>
+</kw>
+<kw name="Get Selected List Value" library="Selenium2Library">
+<var>${selected_strategy}</var>
+<arg>${OPTION_SORT}</arg>
+<doc>Returns the value of selected option from selection list ``locator``.</doc>
+<msg timestamp="20220816 13:10:00.242" level="INFO">${selected_strategy} = lohi</msg>
+<status status="PASS" starttime="20220816 13:10:00.199" endtime="20220816 13:10:00.242"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sort_strategy}</arg>
+<arg>${selected_strategy}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220816 13:10:00.243" endtime="20220816 13:10:00.243"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${sort_strategy}&quot; == &quot;lohi&quot;">
+<kw name="Verify product sorted by price ascending" library="page-inventory">
+<doc>verify product displayed has been sorted by price asc</doc>
+<kw name="Get WebElements" library="Selenium2Library">
+<var>${prices}</var>
+<arg>${PRODUCT_PRICE}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<msg timestamp="20220816 13:10:00.251" level="INFO">${prices} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="7a8f2258-afa3-4c5c-9467-d9f6987f26bf")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (sessi...</msg>
+<status status="PASS" starttime="20220816 13:10:00.243" endtime="20220816 13:10:00.251"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${current_price}</var>
+<arg>0</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220816 13:10:00.251" level="INFO">${current_price} = 0</msg>
+<status status="PASS" starttime="20220816 13:10:00.251" endtime="20220816 13:10:00.251"/>
+</kw>
+<for flavor="IN">
+<var>${price}</var>
+<value>@{prices}</value>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="7a8f2258-afa3-4c5c-9467-d9f6987f26bf")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:00.261" level="INFO">${price} = 7.99</msg>
+<status status="PASS" starttime="20220816 13:10:00.252" endtime="20220816 13:10:00.261"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &gt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.262" endtime="20220816 13:10:00.262"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.252" endtime="20220816 13:10:00.262"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="8f9f6ab0-ba0b-4ff1-8b94-41e28463eb32")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:00.272" level="INFO">${price} = 9.99</msg>
+<status status="PASS" starttime="20220816 13:10:00.262" endtime="20220816 13:10:00.272"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &gt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.272" endtime="20220816 13:10:00.272"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.262" endtime="20220816 13:10:00.272"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="99462466-65fe-43f2-9f31-9486a7c7ab6f")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:00.283" level="INFO">${price} = 15.99</msg>
+<status status="PASS" starttime="20220816 13:10:00.272" endtime="20220816 13:10:00.283"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &gt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.283" endtime="20220816 13:10:00.284"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.272" endtime="20220816 13:10:00.284"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="07a2e077-f77a-4f26-b300-4d66d294f912")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:00.293" level="INFO">${price} = 15.99</msg>
+<status status="PASS" starttime="20220816 13:10:00.284" endtime="20220816 13:10:00.293"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &gt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.293" endtime="20220816 13:10:00.293"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.284" endtime="20220816 13:10:00.293"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="c0d608fd-2a63-4362-b541-f90a609d4f1f")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:00.302" level="INFO">${price} = 29.99</msg>
+<status status="PASS" starttime="20220816 13:10:00.294" endtime="20220816 13:10:00.302"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &gt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.303" endtime="20220816 13:10:00.303"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.294" endtime="20220816 13:10:00.303"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="e8be47af6622b63db392104b16873a32", element="f8e72f2d-b194-47ff-9987-0b0e8f25ccc1")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:00.312" level="INFO">${price} = 49.99</msg>
+<status status="PASS" starttime="20220816 13:10:00.303" endtime="20220816 13:10:00.312"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &gt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:00.312" endtime="20220816 13:10:00.313"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.303" endtime="20220816 13:10:00.313"/>
+</iter>
+<status status="PASS" starttime="20220816 13:10:00.251" endtime="20220816 13:10:00.313"/>
+</for>
+<status status="PASS" starttime="20220816 13:10:00.243" endtime="20220816 13:10:00.313"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.243" endtime="20220816 13:10:00.313"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${sort_strategy}&quot; == &quot;hilo&quot;">
+<kw name="Verify product sorted by price descending" library="page-inventory">
+<doc>verify product displayed has been sorted by price desc</doc>
+<status status="NOT RUN" starttime="20220816 13:10:00.313" endtime="20220816 13:10:00.313"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:00.313" endtime="20220816 13:10:00.313"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>unknown login scenario: ${scenario}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:00.313" endtime="20220816 13:10:00.313"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:00.313" endtime="20220816 13:10:00.313"/>
+</branch>
+<status status="PASS" starttime="20220816 13:10:00.243" endtime="20220816 13:10:00.313"/>
+</if>
+<status status="PASS" starttime="20220816 13:10:00.086" endtime="20220816 13:10:00.314"/>
+</kw>
+<kw name="Close All Browsers" library="Selenium2Library" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220816 13:10:00.314" endtime="20220816 13:10:00.445"/>
+</kw>
+<doc>This test case verifies sort functionality by prices low to high</doc>
+<status status="PASS" starttime="20220816 13:09:55.778" endtime="20220816 13:10:00.446"/>
+</test>
+<test id="s1-t2" name="Sort products by prices DESC" line="20">
+<kw name="Open chrome browser and go to https://www.saucedemo.com/" library="common" type="SETUP" sourcename="Open ${browser} browser and go to ${site_url}">
+<doc>Open browser and go to specific url on maximized window</doc>
+<kw name="Set Selenium Timeout" library="Selenium2Library">
+<arg>10 seconds</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" starttime="20220816 13:10:00.448" endtime="20220816 13:10:00.449"/>
+</kw>
+<kw name="Open Browser" library="Selenium2Library">
+<arg>${site_url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220816 13:10:00.450" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20220816 13:10:00.449" endtime="20220816 13:10:03.052"/>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220816 13:10:03.052" endtime="20220816 13:10:03.181"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:00.448" endtime="20220816 13:10:03.181"/>
+</kw>
+<kw name="Wait until login page successfuly loaded" library="page-login">
+<doc>Verify required elements are displayed in login page</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${INPUT_USERNAME}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.182" endtime="20220816 13:10:03.202"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${INPUT_PASSWORD}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.202" endtime="20220816 13:10:03.219"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.219" endtime="20220816 13:10:03.233"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.181" endtime="20220816 13:10:03.233"/>
+</kw>
+<kw name="Fill login form and submit" library="page-login">
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<arg>valid login</arg>
+<doc>Input values into login form and click on button Login</doc>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${INPUT_USERNAME}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.234" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20220816 13:10:03.234" endtime="20220816 13:10:03.375"/>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<arg>${INPUT_PASSWORD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.376" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20220816 13:10:03.375" endtime="20220816 13:10:03.458"/>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.459" level="INFO">Clicking element 'id:login-button'.</msg>
+<status status="PASS" starttime="20220816 13:10:03.458" endtime="20220816 13:10:03.546"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${scenario}&quot; == &quot;valid login&quot;">
+<kw name="Wait until inventory page successfully loaded" library="page-inventory">
+<doc>Verify required elements are displayed in inventory page</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${MENU_CART}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.547" endtime="20220816 13:10:03.563"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${OPTION_SORT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.563" endtime="20220816 13:10:03.579"/>
+</kw>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${TITLE}</arg>
+<arg>PRODUCTS</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220816 13:10:03.579" level="INFO">Verifying element 'class:title' contains exact text 'PRODUCTS'.</msg>
+<status status="PASS" starttime="20220816 13:10:03.579" endtime="20220816 13:10:03.594"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${PRODUCT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.594" endtime="20220816 13:10:03.607"/>
+</kw>
+<kw name="Get Element Count" library="Selenium2Library">
+<var>${count}</var>
+<arg>${PRODUCT}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.611" level="INFO">${count} = 6</msg>
+<status status="PASS" starttime="20220816 13:10:03.607" endtime="20220816 13:10:03.611"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${count} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.611" endtime="20220816 13:10:03.612"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.547" endtime="20220816 13:10:03.612"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.546" endtime="20220816 13:10:03.612"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${scenario}&quot; == &quot;invalid login&quot;">
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${ERROR_MESSAGE}</arg>
+<arg>Epic sadface: Username and password do not match any user in this service</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:03.612" endtime="20220816 13:10:03.612"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:03.612" endtime="20220816 13:10:03.612"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${scenario}&quot; == &quot;locked out&quot;">
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${ERROR_MESSAGE}</arg>
+<arg>Epic sadface: Sorry, this user has been locked out.</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:03.612" endtime="20220816 13:10:03.612"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:03.612" endtime="20220816 13:10:03.612"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>unknown login scenario: ${scenario}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:03.612" endtime="20220816 13:10:03.612"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:03.612" endtime="20220816 13:10:03.613"/>
+</branch>
+<status status="PASS" starttime="20220816 13:10:03.546" endtime="20220816 13:10:03.613"/>
+</if>
+<status status="PASS" starttime="20220816 13:10:03.233" endtime="20220816 13:10:03.613"/>
+</kw>
+<kw name="Sort products by hilo" library="page-inventory" sourcename="Sort products by ${sort_strategy}">
+<doc>Select and apply sort-strategy in inventory page</doc>
+<kw name="Select From List By Value" library="Selenium2Library">
+<arg>${OPTION_SORT}</arg>
+<arg>${sort_strategy}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20220816 13:10:03.613" level="INFO">Selecting options from selection list 'class:product_sort_container' by value hilo.</msg>
+<status status="PASS" starttime="20220816 13:10:03.613" endtime="20220816 13:10:03.658"/>
+</kw>
+<kw name="Wait until inventory page successfully loaded" library="page-inventory">
+<doc>Verify required elements are displayed in inventory page</doc>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${MENU_CART}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.659" endtime="20220816 13:10:03.669"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${OPTION_SORT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.669" endtime="20220816 13:10:03.679"/>
+</kw>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<arg>${TITLE}</arg>
+<arg>PRODUCTS</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220816 13:10:03.680" level="INFO">Verifying element 'class:title' contains exact text 'PRODUCTS'.</msg>
+<status status="PASS" starttime="20220816 13:10:03.680" endtime="20220816 13:10:03.693"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<arg>${PRODUCT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20220816 13:10:03.693" endtime="20220816 13:10:03.704"/>
+</kw>
+<kw name="Get Element Count" library="Selenium2Library">
+<var>${count}</var>
+<arg>${PRODUCT}</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.708" level="INFO">${count} = 6</msg>
+<status status="PASS" starttime="20220816 13:10:03.704" endtime="20220816 13:10:03.708"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${count} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.708" endtime="20220816 13:10:03.709"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.658" endtime="20220816 13:10:03.709"/>
+</kw>
+<kw name="Get Selected List Value" library="Selenium2Library">
+<var>${selected_strategy}</var>
+<arg>${OPTION_SORT}</arg>
+<doc>Returns the value of selected option from selection list ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.754" level="INFO">${selected_strategy} = hilo</msg>
+<status status="PASS" starttime="20220816 13:10:03.709" endtime="20220816 13:10:03.754"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sort_strategy}</arg>
+<arg>${selected_strategy}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220816 13:10:03.755" endtime="20220816 13:10:03.755"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${sort_strategy}&quot; == &quot;lohi&quot;">
+<kw name="Verify product sorted by price ascending" library="page-inventory">
+<doc>verify product displayed has been sorted by price asc</doc>
+<status status="NOT RUN" starttime="20220816 13:10:03.755" endtime="20220816 13:10:03.755"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:03.755" endtime="20220816 13:10:03.755"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${sort_strategy}&quot; == &quot;hilo&quot;">
+<kw name="Verify product sorted by price descending" library="page-inventory">
+<doc>verify product displayed has been sorted by price desc</doc>
+<kw name="Get WebElements" library="Selenium2Library">
+<var>${prices}</var>
+<arg>${PRODUCT_PRICE}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<msg timestamp="20220816 13:10:03.763" level="INFO">${prices} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="f55ba76b-debc-4689-86dd-af5420ef488b")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (sessi...</msg>
+<status status="PASS" starttime="20220816 13:10:03.756" endtime="20220816 13:10:03.763"/>
+</kw>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${current_price}</var>
+<arg>${prices[0].text}</arg>
+<msg timestamp="20220816 13:10:03.773" level="INFO">${current_price} = 49.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.763" endtime="20220816 13:10:03.773"/>
+</kw>
+<for flavor="IN">
+<var>${price}</var>
+<value>@{prices}</value>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="f55ba76b-debc-4689-86dd-af5420ef488b")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:03.779" level="INFO">${price} = 49.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.773" endtime="20220816 13:10:03.779"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &lt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.779" endtime="20220816 13:10:03.779"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.773" endtime="20220816 13:10:03.779"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="f5e715a8-bbdc-41d2-968e-e1930385f139")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:03.788" level="INFO">${price} = 29.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.779" endtime="20220816 13:10:03.788"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &lt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.788" endtime="20220816 13:10:03.789"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.779" endtime="20220816 13:10:03.789"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="3d523866-e095-4719-b7e6-00247e3acdef")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:03.798" level="INFO">${price} = 15.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.789" endtime="20220816 13:10:03.798"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &lt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.798" endtime="20220816 13:10:03.798"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.789" endtime="20220816 13:10:03.799"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="4045c8a3-2b98-4071-94c4-734fa0193cb9")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:03.808" level="INFO">${price} = 15.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.799" endtime="20220816 13:10:03.808"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &lt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.808" endtime="20220816 13:10:03.808"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.799" endtime="20220816 13:10:03.808"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="a775fb83-d43b-4390-b786-52c4be4c5458")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:03.818" level="INFO">${price} = 9.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.809" endtime="20220816 13:10:03.818"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &lt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.818" endtime="20220816 13:10:03.818"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.808" endtime="20220816 13:10:03.818"/>
+</iter>
+<iter>
+<var name="${price}">&lt;selenium.webdriver.remote.webelement.WebElement (session="2cb46a8afaf20af1095999bd8cc424dd", element="1f5a649c-65b9-4dfe-b9c5-f649f099d041")&gt;</var>
+<kw name="Get Float Value Of Currency" library="util">
+<var>${price}</var>
+<arg>${price.text}</arg>
+<msg timestamp="20220816 13:10:03.827" level="INFO">${price} = 7.99</msg>
+<status status="PASS" starttime="20220816 13:10:03.818" endtime="20220816 13:10:03.828"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>${price} &lt;= ${current_price}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20220816 13:10:03.828" endtime="20220816 13:10:03.828"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.818" endtime="20220816 13:10:03.828"/>
+</iter>
+<status status="PASS" starttime="20220816 13:10:03.773" endtime="20220816 13:10:03.828"/>
+</for>
+<status status="PASS" starttime="20220816 13:10:03.755" endtime="20220816 13:10:03.828"/>
+</kw>
+<status status="PASS" starttime="20220816 13:10:03.755" endtime="20220816 13:10:03.828"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>unknown login scenario: ${scenario}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20220816 13:10:03.828" endtime="20220816 13:10:03.828"/>
+</kw>
+<status status="NOT RUN" starttime="20220816 13:10:03.828" endtime="20220816 13:10:03.828"/>
+</branch>
+<status status="PASS" starttime="20220816 13:10:03.755" endtime="20220816 13:10:03.828"/>
+</if>
+<status status="PASS" starttime="20220816 13:10:03.613" endtime="20220816 13:10:03.829"/>
+</kw>
+<kw name="Close All Browsers" library="Selenium2Library" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20220816 13:10:03.829" endtime="20220816 13:10:03.945"/>
+</kw>
+<doc>This test case verifies sort functionality by prices high to low</doc>
+<status status="PASS" starttime="20220816 13:10:00.447" endtime="20220816 13:10:03.945"/>
+</test>
+<doc>Sauce Demo Inventory Feature Automation Scenarios</doc>
+<status status="PASS" starttime="20220816 13:09:55.494" endtime="20220816 13:10:03.946"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Test-Inventory">Test-Inventory</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
